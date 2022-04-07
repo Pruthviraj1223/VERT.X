@@ -20,7 +20,7 @@ public class eventLoop extends AbstractVerticle {
       .setEventLoopPoolSize(100)
     );
 
-    vertx.deployVerticle(eventLoop.class.getName(),new DeploymentOptions().setInstances(200));
+    vertx.deployVerticle(eventLoop.class.getName(),new DeploymentOptions().setInstances(4));
 
   }
 

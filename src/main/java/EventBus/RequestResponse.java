@@ -28,7 +28,7 @@ public class RequestResponse{
 
     @Override
     public void start(final Promise<Void> startPromise) throws Exception {
-      startPromise.complete();
+
 
       JsonObject jsonObject = new JsonObject().put("Name","Pruthvi").put("Version",1);
 
@@ -37,6 +37,8 @@ public class RequestResponse{
         }).request("add2","Hola",handler2 -> {
         LOG.debug("replied 2 {}" , handler2.result().body().toString());
       });
+
+      startPromise.complete();
     }
   }
 

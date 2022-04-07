@@ -33,7 +33,7 @@ public class PublishSubscribe {
       JsonObject jsonObject = new JsonObject().put("Name","Pruthvi").put("Version",1);
 
       vertx.eventBus().publish("add1",jsonObject);
-      vertx.eventBus().publish("add2",hashMap);
+      vertx.eventBus().publish("add2",hashMap.toString());
      startPromise.complete();
 
     }

@@ -4,6 +4,7 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.DeliveryOptions;
+import io.vertx.core.json.JsonObject;
 
 public class PointToPoint {
   public static void main(String[] args) {
@@ -26,7 +27,7 @@ public class PointToPoint {
 
     @Override
     public void start(Promise<Void> startPromise) throws Exception {
-      vertx.eventBus().send("address","Sending a message....");
+      vertx.eventBus().send("address",new JsonObject().put("name","Pruthvi"));
       startPromise.complete();
     }
   }
