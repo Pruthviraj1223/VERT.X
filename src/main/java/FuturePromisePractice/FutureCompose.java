@@ -79,11 +79,6 @@ public class FutureCompose {
     buffer.setString(9,"Hello");
     System.out.println("data is " + buffer.getLong(1) + " and " + buffer.getString(2, buffer.length()));
 
-
-
-    new JsonObject().put("ss",new HashSet<>());
-
-
 //    all
 //      ---------
 //      - Handler will get called if and only all futures succeeded and completed.

@@ -1,4 +1,4 @@
-package com.example.starter;
+package eventBusExamples;
 
 import io.vertx.core.*;
 import org.slf4j.Logger;

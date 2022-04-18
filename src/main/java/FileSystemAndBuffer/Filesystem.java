@@ -1,4 +1,4 @@
-package FuturePromisePractice;
+package FileSystemAndBuffer;
 
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Vertx;
@@ -21,7 +21,7 @@ public class Filesystem {
 
     OpenOptions openOptions = new OpenOptions();
 
-    fileSystem.open("foo11.txt",openOptions
+    fileSystem.open("Hello.txt",openOptions
       .setRead(true)
       .setWrite(true)
         .setAppend(true)
@@ -41,7 +41,11 @@ public class Filesystem {
 
         System.out.println("file opened");
 
-        file.write(Buffer.buffer(" Hello from pruthvo"));
+//        file.write(Buffer.buffer(" Hello from pruthvo"));
+
+        file.read(buffer1,10,1,100,res->{
+          System.out.println("read data " + buffer1);
+        });
 
 //        file.close();
 
@@ -52,20 +56,19 @@ public class Filesystem {
     });
 
 
-    fileSystem.readFile("foo.txt").onSuccess(result->{
-//      fileSystem.writeFile("foo.txt",result.getBuffer(0,result.length()).appendString("vedant 123"));
+//    fileSystem.readFile("foo.txt").onSuccess(result->{
+////      fileSystem.writeFile("foo.txt",result.getBuffer(0,result.length()).appendString("vedant 123"));
+//
+//      System.out.println("data is " + result);
+//
+//    });
 
-      System.out.println("data is " + result);
-
-    });
-
-    System.out.println("data is here "  + fileSystem.readFileBlocking("foo.txt"));
+//    System.out.println("data is here "  + fileSystem.readFileBlocking("foo.txt"));
 
 //    fileSystem.chmod("/home/pruthviraj/keys.txt","rw----rw-");
 
     fileSystem.copy("foo.txt","Hello.txt");
 //
-//    fileSystem.deleteRecursive("/home/pruthviraj",);
 
 
     vertx.close();
