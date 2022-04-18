@@ -40,6 +40,7 @@ public class RoutersExample {
 //     response.write("data is " +  handler.getBodyAsJson() + "\n");
 //     response.write("data is " + handler.getBodyAsString() + "\n");
      response.write("data is " + handler.getBodyAsJsonArray().getJsonObject(0) + "\n");
+      System.out.println(handler.getBody().toString());
 
       response.end("Hello World from MOVIE!");
 
@@ -50,8 +51,6 @@ public class RoutersExample {
       handler(ctx -> {
 
       HttpServerResponse response = ctx.response();
-
-
 
       response.setChunked(true);
 
