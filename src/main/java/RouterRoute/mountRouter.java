@@ -5,10 +5,8 @@ import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.web.Router;
 
-public class reRoute {
-  public int num =10;
+public class mountRouter {
   public static void main(String[] args) {
-
     Vertx vertx = Vertx.vertx();
 
     HttpServerOptions httpServerOptions = new HttpServerOptions().setMaxHeaderSize(100000);
@@ -22,57 +20,43 @@ public class reRoute {
 
     Router subrouter2 =  Router.router(vertx);
 
-    mainrouter.mountSubRouter("/pruthviraj",subrouter1);
+    mainrouter.mountSubRouter("/pruthviraj/",subrouter1);
 
     mainrouter.mountSubRouter("/vedant",subrouter2);
 
     subrouter1.get("/books").handler(res->{
       res.response().setChunked(true);
-      System.out.println("we are in books");
-      res.put("name","Pruthvraj");
-      res.reroute("/sports");
-
+      res.response().end("we are in books");
     });
 
 
     subrouter1.get("/sports").handler(res->{
       res.response().setChunked(true);
-      System.out.println("we are in sports");
-      String name = res.get("name");
-      System.out.println("name is " + name);
-      res.reroute("/movies");
+      res.response().end("we are in sports");
     });
 
 //
     subrouter1.get("/movies").handler(res->{
       res.response().setChunked(true);
-      String name = res.get("name");
-      System.out.println("name is in movies " + name);
-      res.response().write("we are in movies\n");
-      res.end("we ended");
+      res.response().end("we are in movies");
     });
 
 
     subrouter2.get("/home").handler(res->{
       res.response().setChunked(true);
 
-      System.out.println("We are in vedant's home");
-      res.reroute("/pg");
+      res.response().end("We are in vedant's home");
+
 
     });
 
     subrouter2.get("/pg").handler(res->{
       res.response().setChunked(true);
-
-      System.out.println("We are in vedant's PG");
       res.response().end("Here in PG we are done");
 
     });
 
-
-    httpServer.requestHandler(mainrouter).listen(8080);
-
-
+httpServer.requestHandler(mainrouter).listen(8080);
 
   }
 }

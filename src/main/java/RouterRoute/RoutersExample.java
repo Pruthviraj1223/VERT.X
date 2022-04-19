@@ -26,7 +26,6 @@ public class RoutersExample {
       HttpServerResponse response = res.response();
       response.setChunked(true);
 
-      // Write to the response and end it
       response.end("You are in cricket world!");
     });
 
@@ -35,11 +34,11 @@ public class RoutersExample {
       HttpServerResponse response = handler.response();
       response.setChunked(true);
 
-      // Write to the response and end it
-
 //     response.write("data is " +  handler.getBodyAsJson() + "\n");
 //     response.write("data is " + handler.getBodyAsString() + "\n");
+
      response.write("data is " + handler.getBodyAsJsonArray().getJsonObject(0) + "\n");
+
       System.out.println(handler.getBody().toString());
 
       response.end("Hello World from MOVIE!");
@@ -54,12 +53,11 @@ public class RoutersExample {
 
       response.setChunked(true);
 
-      String name = ctx.pathParam("params0");
-      String id = ctx.pathParam("params1");
+      String name = ctx.pathParam("name");
+      String id = ctx.pathParam("id");
 
       response.write("name of books is " + name + " and id is " + id);
 
-      // Call the next matching route after a 5 second delay
       response.end();
     });
 
@@ -78,7 +76,6 @@ public class RoutersExample {
       HttpServerResponse response = ctx.response();
       response.setChunked(true);
       response.write("It's Music");
-
 
       response.end();
     });

@@ -19,26 +19,24 @@ public class redirectExample {
 
     router.get("/movie").handler(res -> {
 
-      HttpServerResponse response = res.response();
-      response.setChunked(true);
-
-      //response.write("hello movie");
+      res.response().setChunked(true);
+      res.put("name","Pruthviraj");
 
       res.redirect("/books").onSuccess(handler->{
         System.out.println("success");
-      }).onComplete(req->{
-        res.redirect("/kiterunner");
       });
 
     });
 
+
     router.get("/books").handler(res->{
       res.response().setChunked(true);
-      System.out.println("books in here");
 
-      res.response().write("Books!!! You are redirected here!!!!!");
+      String name = res.get("name");
 
-      res.end();
+      System.out.println("books in here" + " data is " + name);
+
+      res.redirect("/sports");
     });
 
     router.get("/sports").handler(res->{
@@ -46,6 +44,7 @@ public class redirectExample {
 
       System.out.println(res.is("application/json"));
       System.out.println(res.is("text/html"));
+      System.out.println("in the sports");
       res.response().end();
 
     });
